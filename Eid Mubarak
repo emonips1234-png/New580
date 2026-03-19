@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>ঈদ উপহার ২০২৬</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --royal-gold: #D4AF37;
+            --deep-green: #064420;
+            --bg-color: #fdfaf6;
+        }
+
+        /* ৩. জুম পুরোপুরি বন্ধ করার অতিরিক্ত সুরক্ষা */
+        html, body {
+            touch-action: manipulation;
+            -ms-touch-action: manipulation;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #giftWrapper { cursor: pointer; z-index: 10; }
+
+        .gift-emoji {
+            font-size: 140px;
+            display: block;
+            animation: bounceBox 1.5s infinite;
+        }
+
+        @keyframes bounceBox {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        #eidCard {
+            display: none;
+            background: #ffffff;
+            width: 90%;
+            max-width: 380px;
+            padding: 40px 20px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border: 4px solid var(--royal-gold);
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--royal-gold);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .salutation { font-size: 1.6rem; color: #333; font-weight: 700; margin-bottom: 5px; }
+        .question { font-size: 1.2rem; color: #666; margin-bottom: 20px; }
+        .main-wish { 
+            font-size: 2.6rem; 
+            color: var(--deep-green); 
+            font-weight: 800; 
+            line-height: 1.2; 
+            margin-bottom: 15px; 
+        }
+        .advance-msg { font-size: 1.1rem; color: #444; line-height: 1.6; }
+        .highlight { color: var(--royal-gold); font-weight: 700; display: block; margin-top: 5px; }
+
+        .btn-reload {
+            margin-top: 30px;
+            padding: 12px 40px;
+            background: var(--royal-gold);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .hint { position: absolute; bottom: 50px; color: #aaa; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div id="giftWrapper" onclick="startSurprise()">
+        <span class="gift-emoji">🎁</span>
+        <p class="hint">বক্সটি ফাটিয়ে উপহারটি দেখো! 💥</p>
+    </div>
+
+    <div id="eidCard">
+        <img src="https://i.ibb.co/fzHjbQJX/image.jpg" alt="Eid Gift" class="profile-img">
+        
+        <p class="salutation">আসসালামু আলাইকুম</p>
+        <p class="question">তুমি কেমন আছো বন্ধু?</p>
+        
+        <h1 class="main-wish">ঈদ মোবারক!</h1>
+        
+        <p class="advance-msg">
+            পবিত্র মাহে রমজানের ইবাদত কবুল হোক। তোমাকে জানাই 
+            <span class="highlight">রমজানের ঈদের অগ্রিম শুভেচ্ছা।</span>
+        </p>
+
+        <button class="btn-reload" onclick="location.reload()">আবার দেখুন</button>
+    </div>
+
+    <script>
+        function startSurprise() {
+            document.getElementById('giftWrapper').style.display = 'none';
+            
+            // বিষ্ফোরণ ইফেক্ট
+            confetti({
+                particleCount: 250,
+                spread: 120,
+                origin: { y: 0.6 },
+                colors: ['#D4AF37', '#064420', '#ff0000', '#ffffff']
+            });
+
+            const card = document.getElementById('eidCard');
+            card.style.display = 'flex';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>
