@@ -2,155 +2,181 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>ঈদ উপহার ২০২৬</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+    <title>SK IBRAHIM | ম্যাজিক পোর্টাল</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <style>
-        :root {
-            --royal-gold: #D4AF37;
-            --deep-green: #064420;
-            --bg-color: #fdfaf6;
+        :root { --gold: #FFD700; --fb: #1877F2; --bg: #011a12; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; }
+        body { background: var(--bg); font-family: 'Hind Siliguri', sans-serif; color: #fff; text-align: center; overflow-x: hidden; }
+
+        /* ১. ম্যাজিক্যাল ফেসবুক বাটন (বড়-ছোট হবে) */
+        .fb-magic {
+            position: fixed; top: 20px; right: 20px; z-index: 10001;
+            width: 45px; height: 45px; border-radius: 50%;
+            background: var(--fb); display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 0 15px var(--fb); border: 2px solid #fff;
+            animation: magicScale 3s infinite ease-in-out;
+        }
+        @keyframes magicScale {
+            0%, 100% { transform: scale(0.8); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 25px var(--fb); }
+        }
+        .fb-magic img { width: 25px; height: 25px; }
+
+        /* ২. অ্যানিমেটেড হাঁটা প্রোফাইল ছবি */
+        .walking-avatar {
+            position: relative; margin: 20px auto;
+            width: 140px; height: 140px; border-radius: 50%;
+            border: 5px solid var(--gold); box-shadow: 0 0 25px var(--gold);
+            background: #fff; object-fit: cover;
+            animation: walkAround 6s infinite alternate ease-in-out;
+        }
+        @keyframes walkAround {
+            0% { transform: translateX(-20px) rotate(-5deg); }
+            100% { transform: translateX(20px) rotate(5deg); }
         }
 
-        /* ৩. জুম পুরোপুরি বন্ধ করার অতিরিক্ত সুরক্ষা */
-        html, body {
-            touch-action: manipulation;
-            -ms-touch-action: manipulation;
-        }
+        /* ৩. টাইম ও তারিখ */
+        .header-box { padding: 30px 10px; }
+        #clock { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: var(--gold); text-shadow: 0 0 15px var(--gold); }
+        #date { font-size: 1.3rem; margin-top: 10px; font-weight: bold; }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Hind Siliguri', sans-serif;
-        }
+        .u-name { font-size: 3rem; color: var(--gold); font-weight: 800; margin-top: 10px; }
+        .u-sub { font-size: 1.8rem; margin-bottom: 20px; }
 
-        body {
-            background-color: var(--bg-color);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            text-align: center;
-        }
+        /* বাটন গ্রিড */
+        .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-width: 500px; margin: 0 auto; }
+        .cat-btn { background: rgba(255,255,255,0.1); border: 1.5px solid var(--gold); color: #fff; padding: 15px 5px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .cat-btn.active { background: var(--gold); color: #000; transform: scale(1.05); }
 
-        #giftWrapper { cursor: pointer; z-index: 10; }
+        /* মেসেজ কার্ড */
+        #msgContainer { padding: 15px; max-width: 500px; margin: 0 auto; }
+        .sms-card { background: #fff; color: #111; padding: 25px; border-radius: 20px; margin-bottom: 15px; text-align: left; border-left: 12px solid var(--gold); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .sms-text { font-size: 1.2rem; font-weight: 700; color: #012e1f; margin-bottom: 15px; line-height: 1.6; }
+        .cp-btn { background: #012e1f; color: var(--gold); border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .del-btn { background: #ff4d4d; color: #fff; width: 100%; padding: 8px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; }
 
-        .gift-emoji {
-            font-size: 140px;
-            display: block;
-            animation: bounceBox 1.5s infinite;
-        }
+        /* অ্যাড ফর্ম */
+        .add-panel { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 25px; border: 1px dashed var(--gold); margin: 20px; }
+        input, textarea { width: 100%; padding: 12px; border-radius: 12px; border: none; margin-bottom: 10px; outline: none; background: #fff; font-family: inherit; }
+        .save-btn { background: var(--gold); color: #000; padding: 15px; width: 100%; border-radius: 50px; border: none; font-weight: 800; cursor: pointer; }
 
-        @keyframes bounceBox {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1) rotate(5deg); }
-        }
-
-        #eidCard {
-            display: none;
-            background: #ffffff;
-            width: 90%;
-            max-width: 380px;
-            padding: 40px 20px;
-            border-radius: 30px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            border: 4px solid var(--royal-gold);
-            flex-direction: column;
-            align-items: center;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid var(--royal-gold);
-            object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .salutation { font-size: 1.6rem; color: #333; font-weight: 700; margin-bottom: 5px; }
-        .question { font-size: 1.2rem; color: #666; margin-bottom: 20px; }
-        .main-wish { 
-            font-size: 2.6rem; 
-            color: var(--deep-green); 
-            font-weight: 800; 
-            line-height: 1.2; 
-            margin-bottom: 15px; 
-        }
-        .advance-msg { font-size: 1.1rem; color: #444; line-height: 1.6; }
-        .highlight { color: var(--royal-gold); font-weight: 700; display: block; margin-top: 5px; }
-
-        .btn-reload {
-            margin-top: 30px;
-            padding: 12px 40px;
-            background: var(--royal-gold);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .hint { position: absolute; bottom: 50px; color: #aaa; font-weight: 600; }
+        #giftBox { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
-    <div id="giftWrapper" onclick="startSurprise()">
-        <span class="gift-emoji">🎁</span>
-        <p class="hint">বক্সটি ফাটিয়ে উপহারটি দেখো! 💥</p>
+    <a href="https://www.facebook.com/share/1FQ66eoo3A/" target="_blank" class="fb-magic">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="FB">
+    </a>
+
+    <div id="giftBox" onclick="startApp()">
+        <div style="font-size: 130px;">🎁</div>
+        <h2 style="color:var(--gold); margin-top:20px;">ইব্রাহিমের ম্যাজিক পোর্টাল</h2>
+        <p>টাচ করে ভিতরে যান ✨</p>
     </div>
 
-    <div id="eidCard">
-        <img src="https://i.ibb.co/fzHjbQJX/image.jpg" alt="Eid Gift" class="profile-img">
-        
-        <p class="salutation">আসসালামু আলাইকুম</p>
-        <p class="question">তুমি কেমন আছো বন্ধু?</p>
-        
-        <h1 class="main-wish">ঈদ মোবারক!</h1>
-        
-        <p class="advance-msg">
-            পবিত্র মাহে রমজানের ইবাদত কবুল হোক। তোমাকে জানাই 
-            <span class="highlight">রমজানের ঈদের অগ্রিম শুভেচ্ছা।</span>
-        </p>
+    <div id="mainUI" style="display:none;">
+        <div class="header-box">
+            <div id="clock">00:00:00</div>
+            <div id="date">লোড হচ্ছে...</div>
+        </div>
 
-        <button class="btn-reload" onclick="location.reload()">আবার দেখুন</button>
+        <img src="https://i.ibb.co/fzHjbQJX/image.jpg" class="walking-avatar">
+
+        <div class="u-name">SK IBRAHIM</div>
+        <div class="u-sub">২০২৬ অল-মেসেজ পোর্টাল</div>
+
+        <div class="cat-grid" id="catButtons"></div>
+
+        <div class="add-panel">
+            <h4 style="color:var(--gold); margin-bottom:10px;">নতুন বাটন ও মেসেজ অ্যাড</h4>
+            <input type="text" id="cInp" placeholder="বাটনের নাম (সঠিক নাম দিন)">
+            <textarea id="mInp" placeholder="সুন্দর একটি মেসেজ লিখুন..."></textarea>
+            <button class="save-btn" onclick="secureSave()">স্মার্ট চেক ও সেভ</button>
+        </div>
+
+        <div id="msgContainer"></div>
+        <div style="height: 100px;"></div>
     </div>
 
     <script>
-        function startSurprise() {
-            document.getElementById('giftWrapper').style.display = 'none';
-            
-            // বিষ্ফোরণ ইফেক্ট
-            confetti({
-                particleCount: 250,
-                spread: 120,
-                origin: { y: 0.6 },
-                colors: ['#D4AF37', '#064420', '#ff0000', '#ffffff']
+        const fixedMsgs = {
+            "প্রবাসীদের জন্য": ["বিদেশের মাটিতে একা ঈদ কাটানো কষ্টের। ঈদ মোবারক!", "মা-বাবার দোয়া খুব মিস করছি। প্রবাসে এভাবেই কাটে ঈদ!", "দেশের মাটির গন্ধ আর বন্ধুদের আড্ডা খুব মনে পড়ে।", "প্রবাসী ভাইয়েরা যেন খুশিতে ঈদ কাটাতে পারে এই দোয়া করি।", "পরবাসে উৎসবের রং ফিকে লাগে, মন কান্দে দেশের তরে।"],
+            "রোজার ঈদ": ["রমজানের ওই রোজার শেষে খুশির ঈদ এলো বন্ধু! ঈদ মোবারক!", "নতুন দিন নতুন সাজ, ঈদ মোবারক জানাই আজ!", "সালামি ছাড়া ঈদ হয় না! তাড়াতাড়ি বিকাশ নাম্বার দে বন্ধু!", "২০২৬ এর ঈদ বয়ে আনুক অনাবিল শান্তি। শুভ ঈদ!", "ঈদের খুশি ছড়িয়ে পড়ুক সবার মনে।"],
+            "রমজান স্পেশাল": ["রমজানের পবিত্র আলোয় আলোকিত হোক জীবন। শুভ রমজান!", "ইবাদতে কাটুক মাহে রমজানের প্রতিটি প্রহর।", "আল্লাহ আমাদের গুনাহ মাফ করুন। মাহে রমজান মোবারক!", "শান্তি আর বরকত নেমে আসুক সবার ঘরে।", "সংযমের মাসে নিজেকে আল্লাহর পথে সঁপে দিন।"],
+            "ভালোবাসা": ["তোর চোখের ওই মায়া কাটানো হাসিতেই আমি হারাই। ভালোবাসি!", "সারা জীবন তোর হাতটা ধরে এই পথ চলতে চাই।", "তুই আমার জীবনের শ্রেষ্ঠ উপহার। অনেক ভালোবাসি!", "ভালোবাসা মানে তোকে ভালো রাখা আর প্রার্থনা করা।", "হাজার ভিড়েও আমি শুধু তোকেই খুঁজে ফিরি।"]
+        };
+
+        let currentCat = "প্রবাসীদের জন্য";
+
+        function startApp() {
+            document.getElementById('giftBox').style.display = 'none';
+            document.getElementById('mainUI').style.display = 'block';
+            setInterval(() => {
+                const n = new Date();
+                document.getElementById('clock').innerText = n.toLocaleTimeString('bn-BD');
+                document.getElementById('date').innerText = n.toLocaleDateString('bn-BD', {day:'numeric', month:'long', year:'numeric'});
+            }, 1000);
+            renderAll();
+            confetti({ particleCount: 150, spread: 70 });
+        }
+
+        function renderAll() {
+            const grid = document.getElementById('catButtons'); grid.innerHTML = '';
+            const userDb = JSON.parse(localStorage.getItem('ib_final_db')) || {};
+            const cats = [...new Set([...Object.keys(fixedMsgs), ...Object.keys(userDb)])];
+
+            cats.forEach(c => {
+                const b = document.createElement('button');
+                b.className = `cat-btn ${c === currentCat ? 'active' : ''}`;
+                b.innerText = c;
+                b.onclick = () => { currentCat = c; renderAll(); };
+                grid.appendChild(b);
             });
 
-            const card = document.getElementById('eidCard');
-            card.style.display = 'flex';
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'scale(1)';
-            }, 100);
+            const box = document.getElementById('msgContainer'); box.innerHTML = '';
+            (fixedMsgs[currentCat] || []).forEach(m => createCard(m, false));
+            (userDb[currentCat] || []).forEach((m, i) => createCard(m, true, i));
         }
-    </script>
 
+        function createCard(t, u, i) {
+            const d = document.createElement('div'); d.className = 'sms-card';
+            d.innerHTML = `<p class="sms-text">${t}</p>
+            <button class="cp-btn" onclick="cp(this, '${t}')">কপি করুন 📋</button>
+            ${u ? `<button class="del-btn" onclick="delMsg('${currentCat}', ${i})">ডিলিট 🗑️</button>` : ''}`;
+            document.getElementById('msgContainer').appendChild(d);
+        }
+
+        function secureSave() {
+            const c = document.getElementById('cInp').value.trim();
+            const m = document.getElementById('mInp').value.trim();
+            // স্মার্ট চেক (ভুল মেসেজ বা বাটন আটকানো)
+            if(c.length < 2 || m.length < 15 || /(.)\1{4,}/.test(m)) {
+                alert("❌ ভুল! বাটন বা মেসেজটি নজরদারিতে বাতিল হয়েছে। সঠিক বাক্য লিখুন।"); return;
+            }
+            let db = JSON.parse(localStorage.getItem('ib_final_db')) || {};
+            if(!db[c]) db[c] = [];
+            db[c].unshift(m);
+            localStorage.setItem('ib_final_db', JSON.stringify(db));
+            currentCat = c; document.getElementById('cInp').value = ''; document.getElementById('mInp').value = '';
+            renderAll(); alert("✅ সফলভাবে সেভ হয়েছে!");
+        }
+
+        function delMsg(c, i) {
+            let db = JSON.parse(localStorage.getItem('ib_final_db'));
+            db[c].splice(i, 1); if(db[c].length === 0) delete db[c];
+            localStorage.setItem('ib_final_db', JSON.stringify(db));
+            renderAll();
+        }
+
+        function cp(b, t) { navigator.clipboard.writeText(t); b.innerText = "কপি হয়েছে ✅"; setTimeout(() => b.innerText = "কপি করুন 📋", 2000); }
+
+        // কোড চুরি প্রতিরোধ
+        document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.keyCode == 85)) return false; };
+    </script>
 </body>
 </html>
-
